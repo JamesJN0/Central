@@ -1,0 +1,30 @@
+🌊 BALNEÁRIO CENTRAL - SISTEMA DE CONTROLE 🏖️
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║    🚀 INSTALAÇÃO SUPER FÁCIL - ESCOLHA SUA OPÇÃO:         ║
+║                                                            ║
+║    💻 COMPUTADOR/NOTEBOOK:                                 ║
+║       👆 Clique duas vezes em: INSTALAR.bat               ║
+║                                                            ║
+║    📱 CELULAR/TABLET:                                      ║
+║       👆 Abra no navegador: instalador-mobile.html        ║
+║                                                            ║
+║    ⚡ EM 10 SEGUNDOS ESTÁ PRONTO!                          ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+✨ SISTEMA COMPLETO INCLUI:
+   📊 Dashboard com resumo
+   📦 Controle de estoque  
+   👥 Gestão de funcionários
+   💰 Controle financeiro
+   📅 Calendário de gastos
+   🎨 Design tema água
+
+📞 DÚVIDAS? Entre em contato para suporte!
+
+🎯 TUDO PRONTO PARA USAR! 
+   Dados salvos automaticamente
+   Funciona offline
+   App instalável no celular

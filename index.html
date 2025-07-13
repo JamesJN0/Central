@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Controle Empresarial">
+    <meta name="description" content="Sistema completo de controle empresarial para micro empresas">
+    
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div id="app">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <img src="logo.jpeg" alt="Balneário Central" class="logo">
+                    <h1><i class="fas fa-chart-line"></i> Controle Balneario Central</h1>
+                </div>
+                <nav class="nav-tabs">
+                    <button class="tab-btn active" data-tab="dashboard">
+                        <i class="fas fa-home"></i> Dashboard
+                    </button>
+                    <button class="tab-btn" data-tab="estoque">
+                        <i class="fas fa-boxes"></i> Estoque
+                    </button>
+                    <button class="tab-btn" data-tab="funcionarios">
+                        <i class="fas fa-users"></i> Funcionários
+                    </button>
+                    <button class="tab-btn" data-tab="ponto">
+                        <i class="fas fa-clock"></i> Controle de Ponto
+                    </button>
+                    <button class="tab-btn" data-tab="despesas">
+                        <i class="fas fa-receipt"></i> Despesas
+                    </button>
+                    <button class="tab-btn" data-tab="calendario">
+                        <i class="fas fa-calendar-alt"></i> Calendário
+                    </button>
+                    <button class="tab-btn" data-tab="relatorios">
+                        <i class="fas fa-chart-bar"></i> Relatórios
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="main">
+            <div class="container">
+                
+                <!-- Dashboard -->
+                <section id="dashboard" class="tab-content active">
+                    <h2>Controle Geral</h2>
+                    
+                    <div class="cards-grid">
+                        <div class="card summary-card">
+                            <div class="card-icon green">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Lucro do Mês</h3>
+                                <p class="value" id="lucroMes">R$ 0,00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card summary-card">
+                            <div class="card-icon red">
+                                <i class="fas fa-minus-circle"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Gastos do Mês</h3>
+                                <p class="value" id="gastosMes">R$ 0,00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card summary-card">
+                            <div class="card-icon blue">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Itens em Estoque</h3>
+                                <p class="value" id="itensEstoque">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card summary-card">
+                            <div class="card-icon orange">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Funcionários</h3>
+                                <p class="value" id="totalFuncionarios">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activities">
+                        <h3>Atividades Recentes</h3>
+                        <div id="atividadesRecentes" class="activities-list">
+                            <!-- Atividades serão carregadas aqui -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Estoque -->
+                <section id="estoque" class="tab-content">
+                    <div class="section-header">
+                        <h2>Controle de Estoque</h2>
+                        <button class="btn btn-primary" onclick="abrirModalEstoque()">
+                            <i class="fas fa-plus"></i> Adicionar Item
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor Unitário</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaEstoque">
+                                <!-- Itens do estoque serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Funcionários -->
+                <section id="funcionarios" class="tab-content">
+                    <div class="section-header">
+                        <h2>Gestão de Funcionários</h2>
+                        <button class="btn btn-primary" onclick="abrirModalFuncionario()">
+                            <i class="fas fa-plus"></i> Adicionar Funcionário
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Salário</th>
+                                    <th>Horário</th>
+                                    <th>Data Admissão</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaFuncionarios">
+                                <!-- Funcionários serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Controle de Ponto -->
+                <section id="ponto" class="tab-content">
+                    <div class="section-header">
+                        <h2>Controle de Ponto</h2>
+                        <button class="btn btn-primary" onclick="abrirModalPonto()">
+                            <i class="fas fa-plus"></i> Registrar Ponto
+                        </button>
+                    </div>
+                    
+                    <div class="ponto-rapido">
+                        <h3>Registro Rápido</h3>
+                        <div class="ponto-buttons">
+                            <select id="funcionarioRapido">
+                                <option value="">Selecione um funcionário</option>
+                            </select>
+                            <button class="btn btn-success" onclick="registrarEntrada()">
+                                <i class="fas fa-sign-in-alt"></i> Entrada
+                            </button>
+                            <button class="btn btn-warning" onclick="registrarSaida()">
+                                <i class="fas fa-sign-out-alt"></i> Saída
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="ponto-filters">
+                        <select id="filtroPontoFuncionario" onchange="filtrarPonto()">
+                            <option value="">Todos os Funcionários</option>
+                        </select>
+                        <input type="date" id="filtroPontoData" onchange="filtrarPonto()" />
+                        <input type="month" id="filtroPontoMes" onchange="filtrarPonto()" />
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Funcionário</th>
+                                    <th>Data</th>
+                                    <th>Entrada</th>
+                                    <th>Saída</th>
+                                    <th>Horas Trabalhadas</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaPonto">
+                                <!-- Registros de ponto serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Despesas -->
+                <section id="despesas" class="tab-content">
+                    <div class="section-header">
+                        <h2>Controle de Despesas</h2>
+                        <button class="btn btn-primary" onclick="abrirModalDespesa()">
+                            <i class="fas fa-plus"></i> Adicionar Despesa
+                        </button>
+                    </div>
+                    
+                    <div class="despesas-filters">
+                        <select id="filtroCategoria" onchange="filtrarDespesas()">
+                            <option value="">Todas as Categorias</option>
+                            <option value="salarios">Salários</option>
+                            <option value="aluguel">Aluguel</option>
+                            <option value="energia">Energia</option>
+                            <option value="agua">Água</option>
+                            <option value="telefone">Telefone/Internet</option>
+                            <option value="material">Material de Escritório</option>
+                            <option value="manutencao">Manutenção</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        
+                        <input type="month" id="filtroMes" onchange="filtrarDespesas()" />
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Categoria</th>
+                                    <th>Valor</th>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaDespesas">
+                                <!-- Despesas serão carregadas aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Calendário de Gastos -->
+                <section id="calendario" class="tab-content">
+                    <div class="section-header">
+                        <h2>Calendário de Gastos</h2>
+                        <div class="calendario-controls">
+                            <select id="mesCalendario" onchange="carregarCalendario()">
+                                <option value="0">Janeiro</option>
+                                <option value="1">Fevereiro</option>
+                                <option value="2">Março</option>
+                                <option value="3">Abril</option>
+                                <option value="4">Maio</option>
+                                <option value="5">Junho</option>
+                                <option value="6">Julho</option>
+                                <option value="7">Agosto</option>
+                                <option value="8">Setembro</option>
+                                <option value="9">Outubro</option>
+                                <option value="10">Novembro</option>
+                                <option value="11">Dezembro</option>
+                            </select>
+                            <select id="anoCalendario" onchange="carregarCalendario()">
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calendario-container">
+                        <div class="calendario-grid" id="calendarioGrid">
+                            <!-- Calendário será gerado aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="dia-detalhes" id="diaDetalhes" style="display: none;">
+                        <h3 id="diaDetalhesTitulo">Gastos do Dia</h3>
+                        <div class="dia-resumo">
+                            <div class="resumo-item receitas">
+                                <span class="label">Receitas:</span>
+                                <span class="valor" id="receitasDia">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-item despesas">
+                                <span class="label">Despesas:</span>
+                                <span class="valor" id="despesasDia">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-item total">
+                                <span class="label">Saldo:</span>
+                                <span class="valor" id="saldoDia">R$ 0,00</span>
+                            </div>
+                        </div>
+                        <div class="dia-transacoes" id="diaTransacoes">
+                            <!-- Transações do dia serão mostradas aqui -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Relatórios -->
+                <section id="relatorios" class="tab-content">
+                    <h2>Relatórios e Análises</h2>
+                    
+                    <div class="relatorio-controls">
+                        <select id="tipoRelatorio" onchange="gerarRelatorio()">
+                            <option value="mensal">Relatório Mensal</option>
+                            <option value="anual">Relatório Anual</option>
+                            <option value="estoque">Relatório de Estoque</option>
+                            <option value="funcionarios">Relatório de Funcionários</option>
+                            <option value="ponto">Relatório de Ponto</option>
+                        </select>
+                        
+                        <input type="month" id="periodoRelatorio" onchange="gerarRelatorio()" />
+                        
+                        <button class="btn btn-secondary" onclick="exportarRelatorio()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                    
+                    <div id="relatorioContent" class="relatorio-content">
+                        <!-- Conteúdo do relatório será gerado aqui -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modais -->
+    <!-- Modal Estoque -->
+    <div id="modalEstoque" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="tituloModalEstoque">Adicionar Item ao Estoque</h3>
+                <span class="close" onclick="fecharModal('modalEstoque')">&times;</span>
+            </div>
+            <form id="formEstoque" onsubmit="salvarItemEstoque(event)">
+                <div class="form-group">
+                    <label for="nomeProduto">Nome do Produto:</label>
+                    <input type="text" id="nomeProduto" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantidadeProduto">Quantidade:</label>
+                    <input type="number" id="quantidadeProduto" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="valorUnitario">Valor Unitário (R$):</label>
+                    <input type="number" id="valorUnitario" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="estoqueMinimo">Estoque Mínimo:</label>
+                    <input type="number" id="estoqueMinimo" min="0" value="5">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="fecharModal('modalEstoque')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Funcionário -->
+    <div id="modalFuncionario" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="tituloModalFuncionario">Adicionar Funcionário</h3>
+                <span class="close" onclick="fecharModal('modalFuncionario')">&times;</span>
+            </div>
+            <form id="formFuncionario" onsubmit="salvarFuncionario(event)">
+                <div class="form-group">
+                    <label for="nomeFuncionario">Nome Completo:</label>
+                    <input type="text" id="nomeFuncionario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cargoFuncionario">Cargo:</label>
+                    <input type="text" id="cargoFuncionario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="salarioFuncionario">Salário (R$):</label>
+                    <input type="number" id="salarioFuncionario" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dataAdmissao">Data de Admissão:</label>
+                    <input type="date" id="dataAdmissao" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="horarioEntrada">Horário de Entrada:</label>
+                    <input type="time" id="horarioEntrada" value="08:00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="horarioSaida">Horário de Saída:</label>
+                    <input type="time" id="horarioSaida" value="18:00">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="fecharModal('modalFuncionario')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Despesa -->
+    <div id="modalDespesa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="tituloModalDespesa">Adicionar Despesa</h3>
+                <span class="close" onclick="fecharModal('modalDespesa')">&times;</span>
+            </div>
+            <form id="formDespesa" onsubmit="salvarDespesa(event)">
+                <div class="form-group">
+                    <label for="descricaoDespesa">Descrição:</label>
+                    <input type="text" id="descricaoDespesa" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoriaDespesa">Categoria:</label>
+                    <select id="categoriaDespesa" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="salarios">Salários</option>
+                        <option value="aluguel">Aluguel</option>
+                        <option value="energia">Energia</option>
+                        <option value="agua">Água</option>
+                        <option value="telefone">Telefone/Internet</option>
+                        <option value="material">Material de Escritório</option>
+                        <option value="manutencao">Manutenção</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="valorDespesa">Valor (R$):</label>
+                    <input type="number" id="valorDespesa" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dataDespesa">Data:</label>
+                    <input type="date" id="dataDespesa" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipoDespesa">Tipo:</label>
+                    <select id="tipoDespesa" required>
+                        <option value="despesa">Despesa</option>
+                        <option value="receita">Receita</option>
+                        <option value="perda">Perda</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="fecharModal('modalDespesa')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Ponto -->
+    <div id="modalPonto" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="tituloModalPonto">Registrar Ponto</h3>
+                <span class="close" onclick="fecharModal('modalPonto')">&times;</span>
+            </div>
+            <form id="formPonto" onsubmit="salvarPonto(event)">
+                <div class="form-group">
+                    <label for="funcionarioPonto">Funcionário:</label>
+                    <select id="funcionarioPonto" required>
+                        <option value="">Selecione um funcionário</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dataPonto">Data:</label>
+                    <input type="date" id="dataPonto" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="horaEntradaPonto">Horário de Entrada:</label>
+                    <input type="time" id="horaEntradaPonto">
+                </div>
+                
+                <div class="form-group">
+                    <label for="horaSaidaPonto">Horário de Saída:</label>
+                    <input type="time" id="horaSaidaPonto">
+                </div>
+                
+                <div class="form-group">
+                    <label for="observacoesPonto">Observações:</label>
+                    <textarea id="observacoesPonto" rows="3" placeholder="Observações sobre o ponto (opcional)"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="fecharModal('modalPonto')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registrado com sucesso: ', registration.scope);
+                    }, function(err) {
+                        console.log('ServiceWorker falhou ao registrar: ', err);
+                    });
+            });
+        }
+        
+        // Prompt de instalação PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Mostrar botão de instalação personalizado se desejar
+            setTimeout(() => {
+                if (confirm('Deseja instalar este aplicativo no seu dispositivo para acesso rápido?')) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Usuário aceitou instalar o PWA');
+                        }
+                        deferredPrompt = null;
+                    });
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

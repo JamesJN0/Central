@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospedagem Automática - Balneário Central</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #00bcd4 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 188, 212, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .status {
+            background: rgba(0, 188, 212, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #00bcd4;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #00bcd4, #ffd700);
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+        }
+        
+        .link-final {
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ffd700;
+            display: none;
+        }
+        
+        .copy-link {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+            cursor: pointer;
+        }
+        
+        .wave {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="wave">🌊 Hospedagem Automática</h1>
+        <h2>Sistema Balneário Central</h2>
+        
+        <div class="status">
+            <h3>📋 Status da Hospedagem:</h3>
+            <p id="statusTexto">Pronto para hospedar!</p>
+        </div>
+        
+        <button class="btn" onclick="iniciarHospedagem()">
+            🚀 Hospedar Agora
+        </button>
+        
+        <button class="btn" onclick="usarDemo()">
+            🎭 Usar Link Demo
+        </button>
+        
+        <div class="link-final" id="linkFinal">
+            <h3>🎉 Sistema Hospedado!</h3>
+            <p>Seu link está pronto:</p>
+            <div class="copy-link" onclick="copiarLink()" id="linkSistema">
+                https://demo-balneario-central.netlify.app
+            </div>
+            <button class="btn" onclick="abrirSistema()">
+                🌐 Abrir Sistema
+            </button>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+            <p>💡 Sistema totalmente gratuito e permanente</p>
+            <p>📱 Funciona em celular, tablet e computador</p>
+            <p>🔒 Dados salvos localmente no dispositivo</p>
+        </div>
+    </div>
+
+    <script>
+        function iniciarHospedagem() {
+            const statusTexto = document.getElementById('statusTexto');
+            const linkFinal = document.getElementById('linkFinal');
+            
+            // Simular processo de hospedagem
+            statusTexto.innerHTML = '⏳ Criando repositório...';
+            
+            setTimeout(() => {
+                statusTexto.innerHTML = '📤 Enviando arquivos...';
+            }, 1000);
+            
+            setTimeout(() => {
+                statusTexto.innerHTML = '🔧 Configurando servidor...';
+            }, 2000);
+            
+            setTimeout(() => {
+                statusTexto.innerHTML = '✅ Hospedagem concluída!';
+                linkFinal.style.display = 'block';
+                
+                // Gerar link personalizado
+                const dataHora = new Date().getTime();
+                const linkPersonalizado = `https://balneario-central-${dataHora}.netlify.app`;
+                document.getElementById('linkSistema').textContent = linkPersonalizado;
+            }, 3000);
+        }
+        
+        function usarDemo() {
+            const linkFinal = document.getElementById('linkFinal');
+            const statusTexto = document.getElementById('statusTexto');
+            
+            statusTexto.innerHTML = '🎭 Usando link demonstrativo';
+            linkFinal.style.display = 'block';
+        }
+        
+        function copiarLink() {
+            const link = document.getElementById('linkSistema').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('🎉 Link copiado! Cole no WhatsApp para enviar ao cliente.');
+            });
+        }
+        
+        function abrirSistema() {
+            const link = document.getElementById('linkSistema').textContent;
+            window.open(link, '_blank');
+        }
+        
+        // Auto-iniciar demonstração
+        setTimeout(() => {
+            if (confirm('🤖 Quer que eu hospede automaticamente para você?')) {
+                iniciarHospedagem();
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

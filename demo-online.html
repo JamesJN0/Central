@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Balneário Central - Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #00bcd4, #ffd700);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,188,212,0.4);
+        }
+        .btn.secondary {
+            background: linear-gradient(135deg, #ffd700, #ffb300);
+            color: #333;
+        }
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .features h3 {
+            color: #00bcd4;
+            margin-bottom: 15px;
+        }
+        .feature-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .device-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #00bcd4;
+        }
+        .install-steps {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <img src="logo.jpeg" alt="Balneário Central" class="logo">
+        <h1>🌊 Sistema Balneário Central</h1>
+        <p class="subtitle">Sistema Completo de Controle Empresarial</p>
+        
+        <div class="device-info">
+            <h3>📱 Detectamos seu dispositivo:</h3>
+            <p id="deviceInfo">Carregando...</p>
+        </div>
+        
+        <div class="install-steps">
+            <h3>🚀 Como instalar:</h3>
+            <div id="installInstructions">Carregando instruções...</div>
+        </div>
+        
+        <a href="index.html" class="btn">
+            🖥️ ABRIR SISTEMA COMPLETO
+        </a>
+        
+        <a href="instalador-mobile.html" class="btn secondary">
+            📱 INSTALADOR MOBILE
+        </a>
+        
+        <div class="features">
+            <h3>✨ Funcionalidades Incluídas:</h3>
+            <div class="feature-item">📊 Dashboard com resumo completo</div>
+            <div class="feature-item">📦 Controle total de estoque</div>
+            <div class="feature-item">👥 Gestão de funcionários</div>
+            <div class="feature-item">⏰ Controle de ponto (entrada/saída)</div>
+            <div class="feature-item">💰 Controle financeiro completo</div>
+            <div class="feature-item">📅 Calendário visual de gastos</div>
+            <div class="feature-item">📊 Relatórios automáticos</div>
+            <div class="feature-item">🎨 Design tema água personalizado</div>
+            <div class="feature-item">📱 Funciona offline como app</div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 15px;">
+            <h3>📞 Suporte Técnico</h3>
+            <p>Qualquer dúvida sobre instalação ou uso, entre em contato!</p>
+            <p><strong>Sistema desenvolvido especialmente para o Balneário Central</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Detectar dispositivo
+        function detectDevice() {
+            const userAgent = navigator.userAgent;
+            const deviceInfo = document.getElementById('deviceInfo');
+            const installInstructions = document.getElementById('installInstructions');
+            
+            if (/Android/i.test(userAgent)) {
+                deviceInfo.innerHTML = '📱 <strong>Android</strong> - Compatível com instalação como app!';
+                installInstructions.innerHTML = `
+                    <div>1. Clique em "INSTALADOR MOBILE" acima</div>
+                    <div>2. Toque em "INSTALAR COMO APP"</div>
+                    <div>3. Confirme a instalação</div>
+                    <div>4. App aparece na tela inicial!</div>
+                `;
+            } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                deviceInfo.innerHTML = '📱 <strong>iOS (iPhone/iPad)</strong> - Compatível com instalação!';
+                installInstructions.innerHTML = `
+                    <div>1. Clique em "ABRIR SISTEMA COMPLETO"</div>
+                    <div>2. Toque no botão compartilhar do Safari</div>
+                    <div>3. Selecione "Adicionar à Tela de Início"</div>
+                    <div>4. App aparece na tela inicial!</div>
+                `;
+            } else if (/Windows/i.test(userAgent)) {
+                deviceInfo.innerHTML = '💻 <strong>Windows</strong> - Perfeito para instalação automática!';
+                installInstructions.innerHTML = `
+                    <div>1. Baixe o arquivo ZIP do sistema</div>
+                    <div>2. Extraia em uma pasta</div>
+                    <div>3. Clique duas vezes em "INSTALAR.bat"</div>
+                    <div>4. Sistema instalado automaticamente!</div>
+                `;
+            } else if (/Mac/i.test(userAgent)) {
+                deviceInfo.innerHTML = '💻 <strong>Mac</strong> - Compatível via navegador!';
+                installInstructions.innerHTML = `
+                    <div>1. Baixe o arquivo ZIP do sistema</div>
+                    <div>2. Extraia em uma pasta</div>
+                    <div>3. Clique duas vezes em "index.html"</div>
+                    <div>4. Sistema abre no navegador!</div>
+                `;
+            } else {
+                deviceInfo.innerHTML = '💻 <strong>Computador</strong> - Compatível!';
+                installInstructions.innerHTML = `
+                    <div>1. Baixe o sistema completo</div>
+                    <div>2. Extraia os arquivos</div>
+                    <div>3. Abra "index.html" no navegador</div>
+                    <div>4. Sistema funcionando!</div>
+                `;
+            }
+        }
+        
+        // Executar quando carregar
+        window.addEventListener('load', detectDevice);
+        
+        // Adicionar animação aos botões
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

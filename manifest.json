@@ -1,0 +1,33 @@
+{
+  "name": "Sistema de Controle Empresarial",
+  "short_name": "Controle Empresarial",
+  "description": "Sistema completo de controle de estoque, gastos, funcionários e ponto para micro empresas",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.jpeg",
+      "sizes": "48x48",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icon-192.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "finance"],
+  "scope": "./",
+  "lang": "pt-BR",
+  "dir": "ltr"
+}

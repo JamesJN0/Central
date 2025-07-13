@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalador Mobile - Balneário Central</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #00bcd4, #ffd700);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 20px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,188,212,0.4);
+        }
+        .instructions {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #00bcd4;
+        }
+        .step {
+            margin: 10px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h1>🌊 Sistema Balneário Central</h1>
+        <p>Instale seu sistema de controle empresarial!</p>
+        
+        <button class="btn" onclick="instalarApp()">
+            📱 INSTALAR COMO APP
+        </button>
+        
+        <button class="btn" onclick="abrirSistema()">
+            🚀 ABRIR SISTEMA
+        </button>
+        
+        <div class="instructions">
+            <h3>📋 Como instalar:</h3>
+            <div class="step">1️⃣ Clique em "INSTALAR COMO APP"</div>
+            <div class="step">2️⃣ Confirme a instalação</div>
+            <div class="step">3️⃣ O app aparecerá na tela inicial</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>✨ Vantagens do App:</h3>
+            <div class="step">📱 Ícone na tela inicial</div>
+            <div class="step">🌐 Funciona offline</div>
+            <div class="step">⚡ Abertura mais rápida</div>
+            <div class="step">🔒 Dados seguros</div>
+        </div>
+    </div>
+
+    <script>
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+        
+        function instalarApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        alert('✅ App instalado com sucesso! Verifique sua tela inicial.');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback para outros navegadores
+                alert('📱 Para instalar:\n\n1. Clique no menu do navegador (⋮)\n2. Selecione "Instalar app" ou "Adicionar à tela inicial"\n3. Confirme a instalação');
+                abrirSistema();
+            }
+        }
+        
+        function abrirSistema() {
+            window.location.href = 'index.html';
+        }
+        
+        // Auto-instalar se possível
+        setTimeout(() => {
+            if (deferredPrompt && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Mostrar dica automática em 3 segundos para mobile
+                const hint = document.createElement('div');
+                hint.style.cssText = `
+                    position: fixed; 
+                    bottom: 20px; 
+                    left: 20px; 
+                    right: 20px; 
+                    background: #00bcd4; 
+                    color: white; 
+                    padding: 15px; 
+                    border-radius: 10px; 
+                    text-align: center; 
+                    animation: slideUp 0.5s ease;
+                    z-index: 1000;
+                `;
+                hint.innerHTML = '💡 Dica: Clique em "INSTALAR COMO APP" para melhor experiência!';
+                document.body.appendChild(hint);
+                
+                setTimeout(() => {
+                    hint.remove();
+                }, 5000);
+            }
+        }, 3000);
+    </script>
+    
+    <style>
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>
